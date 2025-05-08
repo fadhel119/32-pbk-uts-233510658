@@ -20,6 +20,10 @@
           <span :style="{ textDecoration: task.done ? 'line-through' : 'none', color: task.done ? 'gray' : 'black' }">
             {{ task.text }}
           </span>
+          <small v-if="task.due" class="task-due">
+            ({{ task.due }})
+          </small>
+
           <button @click="editTask(task)">Edit</button>
         </template>
 
@@ -44,11 +48,13 @@ const newTask = ref('');
 const showOnlyIncomplete = ref(false);
 
 const tasks = ref([
-  { text: 'Bayar uang sewa', done: false, editing: false },
-  { text: 'Bersihkan kamar lama', done: false, editing: false },
-  { text: 'Sewa transport barang', done: false, editing: false },
-  { text: 'Packing semua barang', done: false, editing: false },
-  { text: 'Ambil kunci kamar baru', done: false, editing: false }
+  { text: 'Bayar uang sewa', done: false, editing: false, due: '2025-05-09' },
+  { text: 'Bersihkan kamar lama', done: false, editing: false, due: '2025-05-04'},
+  { text: 'Sewa transport barang', done: false, editing: false, due: '2025-05-06' },
+  { text: 'Beli perabotan baru', done: false, editing: false, due: '2025-05-07' },
+  { text: 'Beli Stock Snack', done: false, editing: false, due: '2025-05-08' },
+  { text: 'Bersihkan kamar baru', done: false, editing: false, due: '2025-05-10' },
+  { text: 'Packing semua barang', done: false, editing: false, due: '2025-05-11' }
 ]);
 
 function addTask() {
@@ -92,99 +98,3 @@ const filteredTasks = computed(() =>
   showOnlyIncomplete.value ? tasks.value.filter(task => !task.done) : tasks.value
 );
 </script>
-
-<style>
-* {
-  box-sizing: border-box;
-}
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #e3f2fd;
-  color: #333;
-  margin: 0;
-  padding: 0;
-}
-#app {
-  max-width: 600px;
-  margin: 3rem auto;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-h1 {
-  text-align: center;
-  color: #0277bd;
-}
-.input-container {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-input[type="text"],
-.edit-input {
-  flex: 1;
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-}
-.edit-input {
-  max-width: 60%;
-}
-input[type="text"]:focus,
-.edit-input:focus {
-  border-color: #0277bd;
-  outline: none;
-}
-ul {
-  list-style: none;
-  padding: 0;
-}
-li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #f9f9f9;
-  margin-bottom: 0.5rem;
-  padding: 0.75rem;
-  border-radius: 10px;
-  gap: 0.5rem;
-}
-input[type="checkbox"] {
-  margin-right: 0.5rem;
-  transform: scale(1.2);
-}
-span {
-  flex-grow: 1;
-}
-button {
-  background-color: #0277bd;
-  color: white;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-}
-button:hover {
-  background-color: #01579b;
-}
-button.toggle-filter {
-  display: block;
-  margin: 2rem auto 0;
-  background-color: #01579b;
-}
-button.reset {
-  background-color: #d32f2f;
-}
-button.reset:hover {
-  background-color: #b71c1c;
-}
-.footer {
-  margin-top: 2rem;
-  text-align: center;
-  color: #999;
-  font-size: 0.85rem;
-}
-</style>
