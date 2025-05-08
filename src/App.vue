@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Checklist Pindahan Kos</h1>
+    <h1>Kegiatan Pindahan Kos</h1>
 
     <div class="input-container">
       <input v-model="newTask" @keyup.enter="addTask" type="text" placeholder="Tambahkan kegiatan..." />
