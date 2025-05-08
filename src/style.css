@@ -83,6 +83,7 @@ button.toggle-filter {
   display: block;
   margin: 2rem auto 0;
   background-color: #01579b;
+  font-size: 15px;
 }
 button.reset {
   background-color: #d32f2f;
